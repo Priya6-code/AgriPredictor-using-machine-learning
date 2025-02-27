@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('assets/img/crpimg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        
+            text-align: center;
+            padding-top: 150px;
+        }
+        .result-container {
+            background: transparent;
+            display: inline-block;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+        h2 {
+            color: white;
+        }
+        h3{
+            color:white;
+        }
+        h1{
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h3>Your Best crop for cultivation is on the way</h3>
+        <h2>On the Basis of your inputs the crop of your farm is</h2>
+        <h1>{{ prediction }}</h1>
+        <a href="/">Go Back</a>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function getQueryParams() {
+            return new URLSearchParams(window.location.search);
+        }
+
+        function predictCrop(params) {
+            // Extract input values
+            const nitrogen = params.get('nitrogen');
+            const phosphorus = params.get('phosphorus');
+            const potassium = params.get('potassium');
+
+            // Example prediction logic
+            let cropPrediction = "wheat";
+            if (nitrogen > 50 && potassium < 30) cropPrediction = "Rice";
+            else if (phosphorus > 70) cropPrediction = "Corn";
+
+            return ` {{predict}}`;
+        }
+
+        const params = getQueryParams();
+        document.getElementById("result").textContent = predictCrop(params);
+    </script>
+</body>
+</html>

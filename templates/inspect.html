@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CropPredictor - Our Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('assets/img/1000s.jpg') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            background: transparent;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            
+            
+        }
+        h2 {
+            color: black;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            color: black;
+
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            background-color:rgba(255, 255, 255, 0.783);
+        }
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        button {
+            flex: 1;
+            margin: 5px;
+            padding: 10px;
+            border: none;
+            background-color: lightskyblue;
+            color: black;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: lightblue;
+        }
+    </style>
+    
+</head>
+<body>
+
+    <div class="container">
+        <h2>CROP PREDICTOR</h2>
+        <p><strong>Please fill in the details:</strong></p>
+        <form action="/output" method="post">
+            <label for="nitrogen">NITROGEN (N) Level:</label>
+            <input type="number" id="nitrogen" name="nitrogen" required>
+
+            <label for="phosphorus">PHOSPHOROUS (P) Level:</label>
+            <input type="number" id="phosphorus" name="phosphorus" required>
+
+            <label for="potassium">POTASSIUM (K) Level:</label>
+            <input type="number" id="potassium" name="potassium" required>
+
+            <label for="temperature">TEMPERATURE (°C):</label>
+            <input type="number" id="temperature" name="temperature" required>
+
+            <label for="humidity">HUMIDITY (%):</label>
+            <input type="number" id="humidity" name="humidity" required>
+
+            <label for="ph_value">PH VALUE:</label>
+            <input type="number" step="0.1" id="ph_value" name="ph_value" required>
+
+            <label for="rainfall">RAINFALL (mm):</label>
+            <input type="number" id="rainfall" name="rainfall" required>
+ 
+            <label for="land area">LAND AREA (mm):</label>
+            <input type="number" id="land area" name="land area" required>
+
+
+            
+
+
+            <div class="button-container">
+                <button type="submit" >Predict </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function submitForm(page) {
+            const form = document.getElementById('predictionForm');
+            const formData = new FormData(form);
+
+            // Construct query parameters
+            const queryString = new URLSearchParams(formData).toString();
+            
+            // Redirect to the target page with parameters
+            window.location.href = `${page}?${queryString}`;
+        }
+    </script>
+
+</body>
+</html>
